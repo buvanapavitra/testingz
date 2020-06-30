@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE HTML>
+<!--
+	Highlights by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Job site</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'job_app/assets/css/main.css'%}" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<section id="header">
+				<header class="major">
+					<h1>Job Board</h1>
+					<p>Right place to find <a href="http://html5up.net">Job</a></p>
+				</header>
+				<div class="container">
+					<ul class="actions special">
+						<li><a onclick="showPostForm()" href="#post_form" class="button primary scrolly">Add Job Listing</a></li>
+						<form id="post_form" style="opacity:0;height:0px; transition:2s;" method="post">
+							{% csrf_token %}
+							<br><input placeholder='Enter your Job Title'type='text' name='title'>
+							<br><input placeholder='Enter your JobDescriptions' type='text' name='description'>
+							<button type = 'submit'>Submit</button>
+						</form>
+					</ul>
+				</div>
+			</section>
+
+		<!-- One -->
+		{% for liz in job_listings %}
+			<section id="one" class="main special">
+				<div class="container">
+					<span class="image fit primary"><img src="{% static 'job_App/images/pic01.jpg' %}" alt="" /></span>
+					<div class="content">
+						<header class="major">
+							<h2>{{liz.title}}</h2>
+						</header>
+						<header>{{liz.description}}</header>
+					</div>
+					<a href="#two" class="goto-next scrolly">Next</a>
+				</div>
+			</section>
+			{% endfor %}
+
+		
+		
+		<!-- Footer -->
+			<section id="footer">
+				<div class="container">
+					<header class="major">
+						<h2>Get in touch</h2>
+					</header>
+					<form method="post" action="#">
+						<div class="row gtr-uniform">
+							<div class="col-6 col-12-xsmall"><input type="text" name="name" id="name" placeholder="Name" /></div>
+							<div class="col-6 col-12-xsmall"><input type="email" name="email" id="email" placeholder="Email" /></div>
+							<div class="col-12"><textarea name="message" id="message" placeholder="Message" rows="4"></textarea></div>
+							<div class="col-12">
+								<ul class="actions special">
+									<li><input type="submit" value="Send Message" class="primary" /></li>
+								</ul>
+							</div>
+						</div>
+					</form>
+				</div>
+				<footer>
+					<ul class="icons">
+						<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon brands alt fa-dribbble"><span class="label">Dribbble</span></a></li>
+						<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li><li>Demo Images: <a href="http://unsplash.com">Unsplash</a></li>
+					</ul>
+				</footer>
+			</section>
+
+		<!-- Scripts -->
+			<script src="{% static 'job_app/assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'job_app/assets/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'job_app/assets/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'job_app/assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'job_app/assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'job_app/assets/js/util.js' %}"></script>
+			<script src="{% static 'job_app/assets/js/main.js' %}"></script>
+			<script src="{% static 'job_app/assets/js/our_custom_script.js' %}" type="text/javascript"></script>
+	</body>
+</html>
